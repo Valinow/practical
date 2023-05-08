@@ -1,0 +1,115 @@
+using System;
+
+using System.Collections.Generic;
+
+using System.Linq;
+
+namespace CompanyList
+
+{
+
+class Program
+
+{
+
+enum KyivCompanies
+
+{
+
+SoftServe = 1,
+
+EPAM = 2,
+
+GlobalLogic = 3
+
+}
+
+enum KharkivCompanies
+
+{
+
+NIXSolutions = 4,
+
+Miratech = 5,
+
+Ciklum = 6
+
+}
+
+static void Main(string[] args)
+
+{
+
+Console.Write("Введіть номери відомих фірм через кому від 1 до 6: ");
+
+string userInput = Console.ReadLine();
+
+int[] userChoices = userInput.Split(',').Select(choice => int.Parse(choice.Trim())).ToArray();
+
+List<string> kyivChoices = new List<string>();
+
+List<string> kharkivChoices = new List<string>();
+
+foreach (int choice in userChoices)
+
+{
+
+if (Enum.IsDefined(typeof(KyivCompanies), choice))
+
+{
+
+kyivChoices.Add(Enum.GetName(typeof(KyivCompanies), choice));
+
+}
+
+else if (Enum.IsDefined(typeof(KharkivCompanies), choice))
+
+{
+
+kharkivChoices.Add(Enum.GetName(typeof(KharkivCompanies), choice));
+
+}
+
+}
+
+if (kyivChoices.Count > 0)
+
+{
+
+Console.WriteLine("Фірми м. Київ:");
+
+foreach (string choice in kyivChoices)
+
+{
+
+Console.WriteLine(choice);
+
+}
+
+}
+
+if (kharkivChoices.Count > 0)
+
+{
+
+Console.WriteLine("Фірми м. Харків:");
+
+foreach (string choice in kharkivChoices)
+
+{
+
+Console.WriteLine(choice);
+
+}
+
+}
+
+Console.WriteLine("Програму створив Васько Максим.");
+
+Console.ReadKey();
+
+}
+
+}
+
+}
